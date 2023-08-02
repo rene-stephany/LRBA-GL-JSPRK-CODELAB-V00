@@ -25,7 +25,7 @@ class JobCodelabBuilderTest {
         final SourcesList sourcesList = this.jobCodelabBuilder.registerSources();
         assertNotNull(sourcesList);
         assertNotNull(sourcesList.getSources());
-        assertEquals(2, sourcesList.getSources().size());
+        assertEquals(3, sourcesList.getSources().size());
 
         final Source source = sourcesList.getSources().get(0);
         assertNotNull(source);
@@ -36,6 +36,11 @@ class JobCodelabBuilderTest {
         assertNotNull(source2);
         assertEquals("sourceAlias2", source2.getAlias());
         assertEquals("input2.csv", source2.getPhysicalName());
+
+        final Source source3 = sourcesList.getSources().get(2);
+        assertNotNull(source3);
+        assertEquals("sourceAlias3", source3.getAlias());
+        assertEquals("input3.csv", source3.getPhysicalName());
     }
 
     @Test

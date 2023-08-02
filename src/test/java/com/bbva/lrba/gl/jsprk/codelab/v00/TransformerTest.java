@@ -46,11 +46,11 @@ class TransformerTest extends LRBASparkTest {
 
         StructType schema2 = DataTypes.createStructType(new StructField[]{
                 DataTypes.createStructField("DNI", DataTypes.IntegerType, false),
-                DataTypes.createStructField("EMAIL", DataTypes.StringType, false),
+                DataTypes.createStructField("MATERIAS", DataTypes.StringType, false),
         });
-        Row firstRow2 = RowFactory.create(1, "johndoe@gmail.com");
-        Row secondRow2 = RowFactory.create(2, "mikedoe@gmail.com");
-        Row thirdRow2 = RowFactory.create(3, "pauldoe@gmail.com");
+        Row firstRow2 = RowFactory.create(1, "MATEMATICAS");
+        Row secondRow2 = RowFactory.create(2, "ESPAÑOL");
+        Row thirdRow2 = RowFactory.create(3, "GEOGRAFIA");
 
         final List<Row> listRows2 = Arrays.asList(firstRow2, secondRow2, thirdRow2);
 
@@ -58,23 +58,22 @@ class TransformerTest extends LRBASparkTest {
         Dataset<Row> input1 = datasetUtils.createDataFrame(listRows1, schema1);
         Dataset<Row> input2 = datasetUtils.createDataFrame(listRows2, schema2);
 
-        final Map<String, Dataset<Row>> datasetMap = this.transformer.transform(new HashMap<>(Map.of("sourceAlias1", input1, "sourceAlias2", input2)));
+        final Map<String, Dataset<Row>> datasetMap = this.transformer.transform(new HashMap<>(Map.of("sourceAlias1", input1, "sourceAlias3", input2)));
 
         assertNotNull(datasetMap);
         assertEquals(1, datasetMap.size());
 
-        Dataset<RowData> returnedDs = datasetMap.get("joinDNIDataset").as(Encoders.bean(RowData.class));
+        Dataset<RowData> returnedDs = datasetMap.get("targetAlias1").as(Encoders.bean(RowData.class));
         System.out.println("Impresion de joinDNIDataset en class TransformerTest:");
         returnedDs.show();
         final List<RowData> rows = returnedDs.collectAsList();
 
         assertEquals(3, rows.size());
-        assertEquals(1, rows.get(0).getDNI());
         assertEquals("0182", rows.get(0).getENTIDAD());
         assertEquals("John Doe", rows.get(0).getNOMBRE());
         assertEquals("123-456", rows.get(0).getTELEFONO());
-        assertEquals("johndoe@gmail.com", rows.get(0).getEMAIL());
-        assertEquals(200, rows.get(0).getCODITION());
+        assertEquals("MATEMATICAS", rows.get(0).getMATERIAS());
+
 
 
     }

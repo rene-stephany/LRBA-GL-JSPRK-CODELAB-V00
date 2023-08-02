@@ -33,6 +33,14 @@ public class JobCodelabBuilder extends RegisterSparkBuilder {
                         .header(true)
                         .delimiter(",")
                         .build())
+                .add(Source.File.Csv.builder()
+                        .alias("sourceAlias3")
+                        .physicalName("input3.csv")
+                        .serviceName(SERVICENAME)
+                        .sql("SELECT * FROM sourceAlias3")
+                        .header(true)
+                        .delimiter(",")
+                        .build())
                 .build();
     }
 
