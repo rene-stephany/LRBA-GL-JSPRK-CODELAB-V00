@@ -5,11 +5,13 @@ import java.time.LocalDate;
 public class RowData {
 
     private String NOMBRE;
-
+    //private Integer DNI;
     private String ENTIDAD;
     private String TELEFONO;
-
     private String MATERIAS;
+    //private String EMAIL;
+    //private LocalDate FECHA;
+    //private Integer CODITION;
 
 
 
@@ -22,6 +24,13 @@ public class RowData {
         this.NOMBRE = NOMBRE;
     }
 
+   // public Integer getDNI() {
+     //   return DNI;
+    //}
+
+    //public void setDNI(Integer DNI) {
+      //  this.DNI = DNI;
+    //}
 
     public String getENTIDAD() {
         return ENTIDAD;
@@ -39,6 +48,29 @@ public class RowData {
         this.TELEFONO = TELEFONO;
     }
 
+    //public String getEMAIL() {
+      //  return EMAIL;
+    //}
+
+    //public void setEMAIL(String EMAIL) {
+      //  this.EMAIL = EMAIL;
+    //}
+
+    //public LocalDate getFECHA() {
+      //  return FECHA;
+    //}
+
+    //public void setFECHAL(LocalDate FECHA) {
+      //  this.FECHA = FECHA;
+    //}
+
+    //public Integer getCODITION() {
+      //  return CODITION;
+    //}
+
+    //public void setCODITION(Integer CODITION) {
+      //  this.CODITION = CODITION;
+    //}
     public String getMATERIAS() {
         return MATERIAS;
     }
@@ -46,8 +78,6 @@ public class RowData {
     public void setMATERIAS(String MATERIAS) {
         this.MATERIAS = MATERIAS;
     }
-
-
 
 
 }

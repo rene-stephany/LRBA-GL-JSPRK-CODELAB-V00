@@ -16,17 +16,46 @@ public class Transformer implements Transform {
     public Map<String, Dataset<Row>> transform(Map<String, Dataset<Row>> datasetsFromRead) {
         Map<String, Dataset<Row>> datasetsToWrite = new HashMap<>();
 
-        Dataset<Row> dataset1 = datasetsFromRead.get("sourceAlias1");
+       // Dataset<Row> dataset1 = datasetsFromRead.get("sourceAlias1");
+        //Dataset<Row> dataset2 = datasetsFromRead.get("sourceAlias2");
+        //dataset1.show();
+        //dataset2.show();
 
-        Dataset<Row> datasetNEW = datasetsFromRead.get("sourceAlias3");
+        //System.out.println("Dataset1 Counting: " + dataset1.count());
+        //System.out.println("Dataset2 Counting: " + dataset2.count());
 
-        Dataset<Row> dataSet3 = dataset1.join(datasetNEW, "DNI");
-        dataSet3.show();
-        dataSet3 = dataSet3.drop("DNI");
+        //Dataset<Row> joinDNIDataset = dataset1.join(dataset2, "DNI");
 
-        datasetsToWrite.put("targetAlias1", dataSet3);
+        //Dataset<Row> exerciseDataset = joinDNIDataset.withColumn("FECHA", lit(current_date()))
+                //.withColumn("CODITION", when(col("DNI").equalTo(1), 200).otherwise(40))
+                //.withColumn("DNI", col("DNI").cast("Integer"));
 
-        return datasetsToWrite;
+
+        //Dataset<Row> selectDNIDataset = joinDNIDataset.select("DNI").where(joinDNIDataset.col("DNI").equalTo("000001"));
+        ///datasetsToWrite.put("joinDNIDataset", exerciseDataset);
+        //selectDNIDataset.show();
+
+
+        //datasetsToWrite.get("joinDNIDataset").show();
+        //exerciseDataset.groupBy("FECHA").sum("DNI").drop("FECHA").show();
+        //exerciseDataset.groupBy("FECHA").avg("DNI").drop("FECHA").show();
+        //exerciseDataset.groupBy("FECHA").max("DNI").drop("FECHA").show();
+
+        //datasetsToWrite.put("targetAlias1", joinDNIDataset);
+
+        //return datasetsToWrite;
+
+
+            Dataset<Row> dataset1 = datasetsFromRead.get("sourceAlias1");
+
+            Dataset<Row> datasetNEW = datasetsFromRead.get("sourceAlias3");
+
+            Dataset<Row> dataSet3 = dataset1.join(datasetNEW, "DNI");
+            dataSet3.show();
+            dataSet3 = dataSet3.drop("DNI");
+
+            datasetsToWrite.put("targetAlias1", dataSet3);
+
+            return datasetsToWrite;
     }
-
 }
